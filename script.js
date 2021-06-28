@@ -44,8 +44,11 @@ function initializeGame() {
   btnStart.classList.add('hidden');
 
   winningScore = +prompt(
-    'How many rounds do you want to play? \n Refresh the page to reset.'
+    'How many rounds do you want to play? (Default is 5)\n Refresh the page to reset.'
   );
+
+  if (!winningScore) winningScore = 5;
+  console.log(winningScore);
 }
 
 function evaluateRPS(playerSel, computerSel) {
