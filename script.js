@@ -3,6 +3,9 @@
 // DOM Selection
 const overlayDiv = document.querySelector('.overlay-div');
 
+const queryModal = document.querySelector('.query-modal');
+const queryInput = document.querySelector('.query-input');
+
 const rpsHeader = document.querySelector('.rps-header');
 const rpsContainer = document.querySelector('.rps-container');
 const rpsLabels = document.querySelectorAll('.rps-label');
@@ -19,12 +22,13 @@ const endgameModal = document.querySelector('.endgame-modal');
 const endgameStatus = document.querySelector('.endgame-status');
 const endgameDesc = document.querySelector('.endgame-desc');
 
+const btnQuery = document.querySelector('.btn-query');
 const btnStart = document.querySelector('.btn-start');
 const btnPlay = document.querySelector('.btn-play');
 
 // Gameplay
 const choices = ['rock', 'paper', 'scissors'];
-let winningScore = 5;
+let winningScore = 0;
 let scores = [0, 0];
 let playerScore = scores[0];
 let computerScore = scores[1];
@@ -39,15 +43,19 @@ function generateComputerPlay() {
 }
 
 function initializeGame() {
+  queryModal.classList.remove('hidden');
+  overlayDiv.classList.add('overlay');
+}
+
+function submitInput(e) {
+  e.preventDefault();
+  winningScore = +queryInput.value;
+
+  overlayDiv.classList.remove('overlay');
+  queryModal.classList.add('hidden');
   rpsContainer.classList.remove('hidden');
   rpsHeader.classList.remove('hidden');
   btnStart.classList.add('hidden');
-
-  winningScore = +prompt(
-    'How many rounds do you want to play? (Default is 5)\n Refresh the page to reset.'
-  );
-
-  if (!winningScore) winningScore = 5;
 }
 
 function evaluateRPS(playerSel, computerSel) {
@@ -139,6 +147,7 @@ function resetGame() {
   gameState = true;
 
   overlayDiv.classList.remove('overlay');
+  queryModal.classList.add('hidden');
   endgameModal.classList.add('hidden');
   endgameModal.classList.remove('endgame-win');
   endgameModal.classList.remove('endgame-lose');
@@ -174,6 +183,7 @@ function gamePlay(e) {
 
 // Event Listeners
 btnStart.addEventListener('click', initializeGame);
+btnQuery.addEventListener('click', submitInput);
 rpsContainer.addEventListener('click', gamePlay);
 btnPlay.addEventListener('click', resetGame);
 overlayDiv.addEventListener('click', resetGame);

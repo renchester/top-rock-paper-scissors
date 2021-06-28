@@ -38,10 +38,76 @@ a:hover {
   text-decoration: none;
 }
 
-button,
+.query-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  max-width: 500px;
+  z-index: 5;
+  padding: 3.6em;
+  border-radius: 12px;
+  background-color: rgb(230, 180, 17);
+  text-align: center;
+  font-family: 'Teko', sans-serif;
+  color: white;
+}
+
+.query-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.query-element {
+  margin: 2.4rem 0;
+}
+
+.query-label {
+  font-size: 3.6rem;
+  line-height: 1.15;
+}
+
+.query-input,
+.btn-query {
+  border: none;
+  padding: 1rem;
+}
+
+.query-input {
+  border-radius: 5px;
+}
+
+.query-input:focus {
+  outline: 4px solid rgb(212, 64, 10);
+}
+
+.btn-query {
+  width: 50%;
+  align-self: center;
+  font-family: 'Press Start 2P', cursive, Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  padding: 0.5em 1.2em;
+  border: none;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.btn,
+.btn-start,
 .overlay,
 .rps-container {
   cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 8px black;
+  transition: all ease-in-out 250ms;
+}
+
+.btn:focus {
+  transform: translateY(8px);
+  box-shadow: 0px 0px black;
 }
 
 .btn-start,
@@ -67,9 +133,7 @@ button,
 }
 
 .btn-start:hover,
-.btn-start:focus,
 .btn-start:active {
-  box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
   color: rgb(37, 37, 37);
 }
