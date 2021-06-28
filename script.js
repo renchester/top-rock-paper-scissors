@@ -1,23 +1,127 @@
 'use strict';
 
 // DOM Selection
-const btnStart = document.querySelector('.btn-start');
-let rpsHeader = document.querySelector('.rps-header');
+const overlayDiv = document.querySelector('.overlay-div');
+
+const rpsHeader = document.querySelector('.rps-header');
 const rpsContainer = document.querySelector('.rps-container');
+const rpsLabels = document.querySelectorAll('.rps-label');
+const rpsWrappers = document.querySelectorAll('.rps-wrapper');
+
+const resultContainer = document.querySelector('.result-container');
+const resultStatus = document.querySelector('.result-status');
+
+const playerScoreEl = document.querySelector('.player-score');
+const computerScoreEl = document.querySelector('.computer-score');
+const roundsPlayedEl = document.querySelector('.round-played');
+
+const endgameModal = document.querySelector('.endgame-modal');
+const endgameStatus = document.querySelector('.endgame-status');
+const endgameDesc = document.querySelector('.endgame-desc');
+
+const btnStart = document.querySelector('.btn-start');
+const btnPlay = document.querySelector('.btn-play');
 
 // Gameplay
 const choices = ['rock', 'paper', 'scissors'];
+const winningScore = 10;
 let scores = [0, 0];
+let playerScore = scores[0];
+let computerScore = scores[1];
 let roundsPlayed = 0;
+let gameState = true;
 
-function capitalizeFirst(str) {
-  return str[0].toUpperCase() + str.slice(1).toLowerCase();
-}
-
-function computerPlay() {
+// Functions
+function generateComputerPlay() {
   const choiceIndex = Math.ceil(Math.random() * choices.length) - 1;
   const computerSelection = choices[choiceIndex];
   return computerSelection;
+}
+
+function initializeGame() {
+  rpsContainer.classList.remove('hidden');
+  rpsHeader.classList.remove('hidden');
+  btnStart.classList.add('hidden');
+}
+
+function evaluateRPS(playerSel, computerSel) {
+  let roundResult;
+
+  if (playerSel === computerSel) {
+    roundResult = 'tie';
+  } else if (playerSel === 'rock') {
+    roundResult = computerSel === 'scissors' ? 'playerWin' : 'computerWin';
+  } else if (playerSel === 'scissors') {
+    roundResult = computerSel === 'paper' ? 'playerWin' : 'computerWin';
+  } else if (playerSel === 'paper') {
+    roundResult = computerSel === 'rock' ? 'playerWin' : 'computerWin';
+  }
+
+  return roundResult;
+}
+
+function displayInterface(playerSelection) {
+  let label;
+
+  rpsLabels.forEach((el) => el.classList.add('hidden'));
+
+  // Match strat to determine which label to display
+  for (let rpsLabel of rpsLabels) {
+    if (!rpsLabel.classList.contains(`label-${playerSelection}`)) continue;
+    else label = rpsLabel;
+  }
+
+  // Show only the selected label
+  label.classList.remove('hidden');
+
+  // Display the result scores
+  resultContainer.classList.remove('hidden');
+
+  // Remove the previous status to generate a new one per round
+  resultStatus.classList.remove(resultStatus.classList[2]);
+}
+
+function displayResult(roundResult) {
+  if (roundResult === 'playerWin') {
+    resultStatus.textContent = 'You won! Nice moves for a human';
+    resultStatus.classList.add('result-win');
+    playerScore++;
+  } else if (roundResult === 'computerWin') {
+    resultStatus.textContent = 'You lost against the computer!';
+    resultStatus.classList.add('result-lose');
+    computerScore++;
+  } else if (roundResult === 'tie') {
+    resultStatus.textContent = 'Tie! No one wins this round';
+    resultStatus.classList.add('result-tie');
+  }
+
+  scores = [playerScore, computerScore];
+  roundsPlayed++;
+
+  playerScoreEl.textContent = `Your score: ${playerScore}`;
+  computerScoreEl.textContent = `Computer score: ${computerScore}`;
+  roundsPlayedEl.textContent = `Rounds played: ${roundsPlayed}`;
+}
+
+function displayWin(player, computer) {
+  overlayDiv.classList.add('overlay');
+  endgameModal.classList.remove('hidden');
+
+  if (player === winningScore) {
+    endgameModal.classList.add('endgame-win');
+    endgameStatus.textContent = 'CONGRATS!';
+    endgameDesc.textContent = 'You have won this game';
+  } else if (computer === winningScore) {
+    endgameModal.classList.add('endgame-lose');
+    endgameStatus.textContent = 'YOU SUCK!';
+    endgameDesc.textContent = 'The computer has beaten you, filthy human!';
+  }
+}
+
+function makeActive(targetEl) {
+  rpsWrappers.forEach((wrapper) => wrapper.classList.remove('play-active'));
+  const parentEl = targetEl.parentNode;
+  parentEl.classList.add('play-active');
 }
 
 function resetGame() {
@@ -25,112 +129,45 @@ function resetGame() {
   playerScore = 0;
   computerScore = 0;
   roundsPlayed = 0;
+
+  gameState = true;
+
+  overlayDiv.classList.remove('overlay');
+  endgameModal.classList.add('hidden');
+  endgameModal.classList.remove('endgame-win');
+  endgameModal.classList.remove('endgame-lose');
+  resultContainer.classList.add('hidden');
+  rpsWrappers.forEach((el) => el.classList.remove('play-active'));
+  rpsLabels.forEach((el) => el.classList.remove('hidden'));
 }
 
-function init() {
-  let winningScore;
-  let playerScore = scores[0];
-  let computerScore = scores[1];
-  let resultStr;
-
-  // Initializing the game
-  // if (!winningScore) {
-  //   winningScore = +prompt('How many rounds do you want to play?');
-  // }
-
-  // if (roundsPlayed === 0) {
-  //   alert("Let's play rock, paper scissors!");
-  // }
-
-  rpsContainer.classList.remove('hidden');
-  rpsHeader.classList.remove('hidden');
-  btnStart.classList.add('hidden');
-}
-
-function matchSelection(e) {
-  // Guard clause
+function gamePlay(e) {
+  // Guard clauses
+  if (!gameState) return;
   if (!e.target.classList.contains('rps-icon')) return;
+  makeActive(e.target);
 
+  // Define the round plays
   const playerSelection = e.target.dataset.selection;
-  const computerSelection = computerPlay();
-  let roundResult;
+  const computerSelection = generateComputerPlay();
 
-  if (playerSelection === computerSelection) {
-    roundResult = 'tie';
-  } else if (playerSelection === 'rock') {
-    roundResult =
-      computerSelection === 'scissors' ? 'playerWin' : 'computerWin';
-  } else if (playerSelection === 'scissors') {
-    roundResult = computerSelection === 'paper' ? 'playerWin' : 'computerWin';
-  } else if (playerSelection === 'paper') {
-    roundResult = computerSelection === 'rock' ? 'playerWin' : 'computerWin';
+  // Determine result
+  const roundResult = evaluateRPS(playerSelection, computerSelection);
+  if (!roundResult) return;
+
+  // Display the game interface
+  displayInterface(playerSelection);
+
+  displayResult(roundResult);
+
+  if (playerScore >= winningScore || computerScore >= winningScore) {
+    gameState = false;
+    displayWin(playerScore, computerScore);
   }
-  return roundResult;
 }
 
 // Event Listeners
-btnStart.addEventListener('click', init);
-rpsContainer.addEventListener('click', matchSelection);
-
-/*
- // Continuing gameplay if no one has won
-  if (playerScore < winningScore && computerScore < winningScore) {
-    const [roundResult, playerSelection, computerSelection] = playRound();
-
-    if (roundResult === 'playerWin') {
-      resultStr = `You win! ${capitalizeFirst(
-        playerSelection
-      )} beats ${computerSelection}`;
-      playerScore++;
-    } else if (roundResult === 'computerWin') {
-      resultStr = `You lose! ${capitalizeFirst(
-        computerSelection
-      )} beats ${playerSelection}.`;
-      computerScore++;
-    } else if (roundResult === 'tie') {
-      resultStr = `Tie! No one wins this round`;
-    } else if (!roundResult) game();
-
-    scores = [playerScore, computerScore];
-    roundsPlayed++;
-
-    alert(
-      `${resultStr} \n Your score: ${playerScore} \n Computer score: ${computerScore} \n Tries: ${roundsPlayed}`
-    );
-
-    playGame();
-  }
-
-  // Result if a player has won
-
-  if (playerScore === winningScore) {
-    alert(`You beat the computer in ${roundsPlayed} tries! Nice!`);
-    resetGame();
-  } else if (computerScore === winningScore) {
-    alert(`Damn, you lost even with ${roundsPlayed} tries. Tough luck!`);
-    resetGame();
-  }
-  */
-
-/*
-  function playRound() {
-  let roundResult;
-
-  const playerInput = prompt('Pick between rock, paper, or scissors', '');
-  const playerSelection = playerInput.trim().toLowerCase();
-  const computerSelection = computerPlay();
-
-  if (playerSelection === computerSelection) {
-    roundResult = 'tie';
-  } else if (playerSelection === 'rock') {
-    roundResult =
-      computerSelection === 'scissors' ? 'playerWin' : 'computerWin';
-  } else if (playerSelection === 'scissors') {
-    roundResult = computerSelection === 'paper' ? 'playerWin' : 'computerWin';
-  } else if (playerSelection === 'paper') {
-    roundResult = computerSelection === 'rock' ? 'playerWin' : 'computerWin';
-  } else alert('Wrong input! Try again.');
-
-  return [roundResult, playerSelection, computerSelection];
-}
-*/
+btnStart.addEventListener('click', initializeGame);
+rpsContainer.addEventListener('click', gamePlay);
+btnPlay.addEventListener('click', resetGame);
+overlayDiv.addEventListener('click', resetGame);

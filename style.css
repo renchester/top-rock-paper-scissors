@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-win: rgb(4, 255, 4);
+  --color-lose: rgb(255, 70, 70);
+  --color-tie: yellow;
+}
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;
@@ -16,11 +22,24 @@ h1 {
   font-size: 4.5vmax;
   color: white;
   text-align: center;
-  padding: 10rem 2rem 0;
+  padding: 12rem 2rem 0;
+}
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+button,
+.overlay,
+.rps-container {
+  cursor: pointer;
 }
 
 .btn-start,
 .rps-header,
+.rps-label,
 .result-container {
   font-family: 'Press Start 2P', cursive, Arial, Helvetica, sans-serif;
   color: rgb(255, 255, 255);
@@ -28,7 +47,10 @@ h1 {
 
 .btn-start {
   display: block;
-  margin: 3em auto 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 1em 2.1em;
   border: 1px solid white;
   border-radius: 100px;
@@ -46,7 +68,7 @@ h1 {
 }
 
 .rps-header {
-  padding: 3em;
+  padding: 2.4em 2.4em 0;
   text-align: center;
   font-size: 2.4rem;
 }
@@ -56,13 +78,14 @@ h1 {
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding: 1.2em;
   margin: auto;
 }
 
 .rps-wrapper {
-  padding: 2rem 0;
+  padding: 2rem 1rem;
 }
 
 .rps-paper,
@@ -70,13 +93,15 @@ h1 {
   transform: rotate(90deg);
 }
 
-.rps-icon {
-  cursor: pointer;
+.rps-label {
+  padding-top: 0.75rem;
+  text-align: center;
 }
 
 .rps-wrapper:hover,
 .rps-wrapper:active,
-.rps-wrapper:focus {
+.rps-wrapper:focus,
+.play-active {
   transform: scale(1.3);
 }
 
@@ -96,15 +121,60 @@ h1 {
 }
 
 .result-win {
-  color: rgb(4, 255, 4);
+  color: var(--color-win);
 }
 
 .result-lose {
-  color: rgb(255, 70, 70);
+  color: var(--color-lose);
 }
 
 .result-tie {
-  color: yellow;
+  color: var(--color-tie);
+}
+
+.endgame-modal {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 66%;
+  max-width: 500px;
+  z-index: 5;
+  padding: 3.6em;
+  border-radius: 12px;
+  background-color: gray;
+  text-align: center;
+  font-family: 'Teko', sans-serif;
+  color: white;
+}
+
+.endgame-status {
+  text-transform: capitalize;
+  font-size: 4rem;
+  margin-bottom: -1.2rem;
+}
+
+.endgame-desc {
+  font-size: 2rem;
+}
+
+.endgame-win {
+  background-color: var(--color-win);
+}
+
+.endgame-lose {
+  background-color: var(--color-lose);
+}
+
+.btn-play {
+  font-family: 'Press Start 2P', cursive, Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  padding: 0.5em 1.2em;
+  margin: 1.6em auto 0;
+  border: none;
+  border-radius: 8px;
 }
 
 footer {
@@ -125,4 +195,16 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 2;
 }

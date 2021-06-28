@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Syncopate:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lobster&family=Press+Start+2P&family=Syncopate:wght@700&family=Teko:wght@500&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -21,12 +21,13 @@
     <div class="rps-container hidden">
       <div class="rps-wrapper rps-rock-container">
         <img
-          src="https://img.icons8.com/color/110/000000/hand-rock.png"
+          src="https://img.icons8.com/color/100/000000/hand-rock.png"
           alt="hand
       rock"
-          class="rps-icon rps-rock play-active"
+          class="rps-icon rps-rock"
           data-selection="rock"
         />
+        <p class="rps-label label-rock">ROCK</p>
       </div>
       <div class="rps-wrapper rps-paper-container">
         <img
@@ -35,6 +36,7 @@
           class="rps-icon rps-paper"
           data-selection="paper"
         />
+        <p class="rps-label label-paper">PAPER</p>
       </div>
       <div class="rps-wrapper rps-scissors-container">
         <img
@@ -43,13 +45,20 @@
           class="rps-icon rps-scissors"
           data-selection="scissors"
         />
+        <p class="rps-label label-scissors">SCISSORS</p>
       </div>
     </div>
     <div class="result-container hidden">
-      <h2 class="round-result result-win">You win!</h2>
+      <h2 class="round-result result-status">You win!</h2>
       <p class="round-result player-score">Your score: 0</p>
       <p class="round-result computer-score">Computer score: 0</p>
       <p class="round-result round-played">Rounds played: 0</p>
+    </div>
+    <div class="overlay-div"></div>
+    <div class="endgame-modal hidden">
+      <h2 class="endgame-result endgame-status">CONGRATS!</h2>
+      <p class="endgame-result endgame-desc">You have won this game</p>
+      <button class="btn btn-play">PLAY AGAIN</button>
     </div>
     <footer>
       <p class="footer-desc">Developed by Renchester Ramos</p>
