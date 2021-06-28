@@ -25,10 +25,17 @@ h1 {
   padding: 12rem 2rem 0;
 }
 
-body {
+.container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
+}
+
+a,
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
 }
 
 button,
@@ -85,6 +92,10 @@ button,
 }
 
 .rps-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  max-width: 160px;
   padding: 2rem 1rem;
 }
 
@@ -179,16 +190,26 @@ button,
 }
 
 footer {
-  display: block;
-  position: absolute;
-  bottom: 0%;
+  position: relative;
   padding: 3em;
   margin: auto;
   width: 100%;
 }
 
+.footer-link {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .footer-desc {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: rgb(224, 224, 224);
+  padding-left: 1em;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1rem;
@@ -208,4 +229,20 @@ footer {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.65);
   z-index: 2;
+}
+
+@media (min-width: 1000px) {
+  h1 {
+    font-size: 5rem;
+  }
+}
+
+@media (orientation: portrait) {
+  h1 {
+    padding: 10rem 4rem 0;
+  }
+
+  .footer-link {
+    padding-bottom: 1.5rem;
+  }
 }
