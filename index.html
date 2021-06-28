@@ -18,25 +18,9 @@
     <div class="container">
       <h1>ROCK PAPER SCISSORS</h1>
       <button class="btn-start">START</button>
-      <div class="query-element query-modal hidden">
-        <form action="" method="get" class="query-element query-container">
-          <label for="round-query" class="query-label"
-            >How many rounds do you want to play?</label
-          >
-          <input
-            name="round-query"
-            type="number"
-            class="query-element query-input"
-            value="5"
-            min="0"
-            max="100"
-          />
-          <button class="btn btn-query">OK</button>
-        </form>
-      </div>
       <p class="rps-header hidden">TAKE YOUR PICK!</p>
       <div class="rps-container hidden">
-        <div class="rps-wrapper rps-rock-container">
+        <div class="rps-wrapper rps-rock-container" tabindex="9">
           <img
             src="https://img.icons8.com/color/100/000000/hand-rock.png"
             alt="hand
@@ -46,7 +30,7 @@
           />
           <p class="rps-label label-rock">ROCK</p>
         </div>
-        <div class="rps-wrapper rps-paper-container">
+        <div class="rps-wrapper rps-paper-container" tabindex="9">
           <img
             src="https://img.icons8.com/color/100/000000/hand.png"
             alt="hand paper"
@@ -55,7 +39,7 @@
           />
           <p class="rps-label label-paper">PAPER</p>
         </div>
-        <div class="rps-wrapper rps-scissors-container">
+        <div class="rps-wrapper rps-scissors-container" tabindex="9">
           <img
             src="https://img.icons8.com/color/100/000000/hand-scissors--v1.png"
             alt="hand scissors"
@@ -71,6 +55,24 @@
         <p class="round-result computer-score">Computer score: 0</p>
         <p class="round-result round-played">Rounds played: 0</p>
       </div>
+
+      <div class="query-element query-modal hidden">
+        <form action="" method="get" class="query-element query-container">
+          <label for="round-query" class="query-label"
+            >How many rounds do you want to play?</label
+          >
+          <input
+            name="round-query"
+            type="number"
+            class="query-element query-input"
+            value="5"
+            min="9"
+            max="100"
+          />
+          <button class="btn btn-query">OK</button>
+        </form>
+      </div>
+
       <div class="overlay-div"></div>
       <div class="endgame-modal hidden">
         <h2 class="endgame-result endgame-status">CONGRATS!</h2>

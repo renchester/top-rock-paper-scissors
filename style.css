@@ -38,6 +38,130 @@ a:hover {
   text-decoration: none;
 }
 
+/* BUTTON PROPERTIES */
+
+.btn,
+.btn-start,
+.overlay,
+.rps-container {
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: 0px 8px black;
+  transition: all ease-in-out 250ms;
+}
+
+.btn:focus {
+  transform: translateY(8px);
+  box-shadow: 0px 0px black;
+}
+
+.btn-start,
+.rps-header,
+.rps-label,
+.result-container {
+  font-family: 'Press Start 2P', cursive, Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+}
+
+.btn-start {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em 2.1em;
+  border: 1px solid white;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.274);
+  transition: background-color 300ms ease-in-out;
+  font-size: 2.4rem;
+}
+
+.btn-start:hover,
+.btn-start:active {
+  background-color: white;
+  color: rgb(37, 37, 37);
+}
+
+.btn-start:focus {
+  outline: none;
+  box-shadow: 0px 10px rgb(185, 185, 185);
+}
+
+.rps-header {
+  padding: 2.4em 2.4em 0;
+  text-align: center;
+  font-size: 2.4rem;
+}
+
+.rps-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  padding: 1.2em;
+  margin: auto;
+}
+
+.rps-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  max-width: 160px;
+  padding: 2rem 1rem;
+}
+
+.rps-wrapper:hover,
+.rps-wrapper:active,
+.rps-wrapper:focus,
+.play-active {
+  transform: scale(1.3);
+}
+
+.rps-paper,
+.rps-rock {
+  transform: rotate(90deg);
+}
+
+.rps-label {
+  padding-top: 0.75rem;
+  text-align: center;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  margin: auto;
+  width: 70%;
+  z-index: 10;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.round-result {
+  padding: 1.2rem 0;
+}
+
+.result-win {
+  color: var(--color-win);
+}
+
+.result-lose {
+  color: var(--color-lose);
+}
+
+.result-tie {
+  color: var(--color-tie);
+}
+
+/* QUERY MODAL WINDOW */
+
 .query-modal {
   position: fixed;
   top: 50%;
@@ -93,120 +217,7 @@ a:hover {
   border-radius: 50px;
 }
 
-.btn,
-.btn-start,
-.overlay,
-.rps-container {
-  cursor: pointer;
-}
-
-.btn:hover {
-  box-shadow: 0px 8px black;
-  transition: all ease-in-out 250ms;
-}
-
-.btn:focus {
-  transform: translateY(8px);
-  box-shadow: 0px 0px black;
-}
-
-.btn-start,
-.rps-header,
-.rps-label,
-.result-container {
-  font-family: 'Press Start 2P', cursive, Arial, Helvetica, sans-serif;
-  color: rgb(255, 255, 255);
-}
-
-.btn-start {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 1em 2.1em;
-  border: 1px solid white;
-  border-radius: 100px;
-  background-color: rgba(255, 255, 255, 0.274);
-  transition: background-color 300ms ease-in-out;
-  font-size: 2.4rem;
-}
-
-.btn-start:hover,
-.btn-start:active {
-  background-color: white;
-  color: rgb(37, 37, 37);
-}
-
-.rps-header {
-  padding: 2.4em 2.4em 0;
-  text-align: center;
-  font-size: 2.4rem;
-}
-
-.rps-container {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 1.2em;
-  margin: auto;
-}
-
-.rps-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 30%;
-  max-width: 160px;
-  padding: 2rem 1rem;
-}
-
-.rps-paper,
-.rps-rock {
-  transform: rotate(90deg);
-}
-
-.rps-label {
-  padding-top: 0.75rem;
-  text-align: center;
-}
-
-.rps-wrapper:hover,
-.rps-wrapper:active,
-.rps-wrapper:focus,
-.play-active {
-  transform: scale(1.3);
-}
-
-.result-container {
-  display: flex;
-  flex-direction: column;
-  padding-top: 2rem;
-  margin: auto;
-  width: 70%;
-  z-index: 10;
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-.round-result {
-  padding: 1.2rem 0;
-}
-
-.result-win {
-  color: var(--color-win);
-}
-
-.result-lose {
-  color: var(--color-lose);
-}
-
-.result-tie {
-  color: var(--color-tie);
-}
+/* ENDGAME MODAL WINDOW */
 
 .endgame-modal {
   display: flex;
@@ -253,6 +264,8 @@ a:hover {
   background-color: white;
   border-radius: 8px;
 }
+
+/*= FOOTER */
 
 footer {
   position: relative;
