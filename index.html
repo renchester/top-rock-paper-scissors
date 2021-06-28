@@ -7,9 +7,17 @@
     <title>Rock Paper Scissors</title>
 
     <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <h1>ROCK PAPER SCISSORS</h1>
     <main>
+      <button class="btn btn-start">START</button>
       <!-- <section class="player player-user">
         <h2 class="label player-user">SCORE</h2>
         <p class="score player-user">0</p>
@@ -18,8 +26,22 @@
         <h2 class="label player-computer">SCORE</h2>
         <p class="score player-computer">0</p>
       </section> -->
-
-      <button class="btn btn-start">START</button>
+      <img
+        src="https://img.icons8.com/color/100/000000/hand-rock.png"
+        alt="hand
+      rock"
+        class="rps-icon rps-rock play-active"
+      />
+      <img
+        src="https://img.icons8.com/color/100/000000/hand.png"
+        alt="hand paper"
+        class="rps-icon rps-paper"
+      />
+      <img
+        src="https://img.icons8.com/color/100/000000/hand-scissors--v1.png"
+        alt="hand scissors"
+        class="rps-icon rps-scissors"
+      />
     </main>
     <script src="script.js"></script>
   </body>

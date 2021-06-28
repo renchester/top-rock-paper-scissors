@@ -1,23 +1,25 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  background: rgb(37, 37, 37);
+  font-family: sans-serif;
 }
 
 body {
-  background: linear-gradient(
-      to bottom right,
-      rgb(229, 140, 229),
-      rgb(80, 109, 172)
-    )
-    no-repeat center center fixed;
-  font-family: sans-serif;
-  height: 100vh;
+  /* background: linear-gradient(
+    to bottom right,
+    rgb(229, 140, 229),
+    rgb(188, 100, 214),
+    rgb(145, 88, 192),
+    rgb(105, 93, 184),
+    rgb(76, 100, 151)
+  ); */
 }
 
 main {
@@ -25,10 +27,26 @@ main {
   width: 100%;
   height: 60rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: auto;
+}
+
+h1 {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 4.5vmax;
+  color: white;
+  text-align: center;
+  padding: 10rem 2rem 0;
+}
+
+.rps-paper {
+  transform: rotate(90deg);
+}
+
+.rps-rock {
+  transform: rotate(90deg);
 }
 
 .player {
@@ -47,8 +65,6 @@ main {
 }
 
 .btn {
-  display: block;
-  position: absolute;
   width: 200px;
   height: 150px;
   border: 1px solid white;
@@ -58,9 +74,12 @@ main {
   font-weight: 700;
   color: rgb(255, 255, 255);
   background-color: rgba(255, 255, 255, 0.274);
+  transition: background-color 300ms ease-in-out;
 }
 
 .btn:hover,
 .btn:active {
   box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: transparent;
 }

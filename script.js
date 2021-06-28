@@ -19,7 +19,7 @@ function computerPlay() {
 }
 // computerPlay();
 
-function gameReset() {
+function resetGame() {
   scores = [0, 0];
   playerScore = 0;
   computerScore = 0;
@@ -47,7 +47,7 @@ function playRound() {
   return [roundResult, playerSelection, computerSelection];
 }
 
-function game() {
+function playGame() {
   const winningScore = 5;
   let playerScore = scores[0];
   let computerScore = scores[1];
@@ -83,19 +83,19 @@ function game() {
       `${resultStr} \n Your score: ${playerScore} \n Computer score: ${computerScore} \n Tries: ${roundsPlayed}`
     );
 
-    game();
+    playGame();
   }
 
   // Result if a player has won
 
   if (playerScore === winningScore) {
     alert(`You beat the computer in ${roundsPlayed} tries! Nice!`);
-    gameReset();
+    resetGame();
   } else if (computerScore === winningScore) {
     alert(`Damn, you lost even with ${roundsPlayed} tries. Tough luck!`);
-    gameReset();
+    resetGame();
   }
 }
 
 // Event Listeners
-btnStart.addEventListener('click', game);
+btnStart.addEventListener('click', playGame);
