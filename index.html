@@ -10,39 +10,50 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Syncopate:wght@700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <h1>ROCK PAPER SCISSORS</h1>
-    <main>
-      <button class="btn btn-start">START</button>
-      <!-- <section class="player player-user">
-        <h2 class="label player-user">SCORE</h2>
-        <p class="score player-user">0</p>
-      </section>
-      <section class="player player-computer">
-        <h2 class="label player-computer">SCORE</h2>
-        <p class="score player-computer">0</p>
-      </section> -->
-      <img
-        src="https://img.icons8.com/color/100/000000/hand-rock.png"
-        alt="hand
+    <button class="btn btn-start">START</button>
+    <p class="rps-header hidden">TAKE YOUR PICK!</p>
+    <div class="rps-container hidden">
+      <div class="rps-wrapper rps-rock-container">
+        <img
+          src="https://img.icons8.com/color/110/000000/hand-rock.png"
+          alt="hand
       rock"
-        class="rps-icon rps-rock play-active"
-      />
-      <img
-        src="https://img.icons8.com/color/100/000000/hand.png"
-        alt="hand paper"
-        class="rps-icon rps-paper"
-      />
-      <img
-        src="https://img.icons8.com/color/100/000000/hand-scissors--v1.png"
-        alt="hand scissors"
-        class="rps-icon rps-scissors"
-      />
-    </main>
+          class="rps-icon rps-rock play-active"
+          data-selection="rock"
+        />
+      </div>
+      <div class="rps-wrapper rps-paper-container">
+        <img
+          src="https://img.icons8.com/color/100/000000/hand.png"
+          alt="hand paper"
+          class="rps-icon rps-paper"
+          data-selection="paper"
+        />
+      </div>
+      <div class="rps-wrapper rps-scissors-container">
+        <img
+          src="https://img.icons8.com/color/100/000000/hand-scissors--v1.png"
+          alt="hand scissors"
+          class="rps-icon rps-scissors"
+          data-selection="scissors"
+        />
+      </div>
+    </div>
+    <div class="result-container hidden">
+      <h2 class="round-result result-win">You win!</h2>
+      <p class="round-result player-score">Your score: 0</p>
+      <p class="round-result computer-score">Computer score: 0</p>
+      <p class="round-result round-played">Rounds played: 0</p>
+    </div>
+    <footer>
+      <p class="footer-desc">Developed by Renchester Ramos</p>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>

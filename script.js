@@ -1,7 +1,9 @@
 'use strict';
 
 // DOM Selection
-let btnStart = document.querySelector('.btn-start');
+const btnStart = document.querySelector('.btn-start');
+let rpsHeader = document.querySelector('.rps-header');
+const rpsContainer = document.querySelector('.rps-container');
 
 // Gameplay
 const choices = ['rock', 'paper', 'scissors'];
@@ -17,7 +19,6 @@ function computerPlay() {
   const computerSelection = choices[choiceIndex];
   return computerSelection;
 }
-// computerPlay();
 
 function resetGame() {
   scores = [0, 0];
@@ -26,12 +27,33 @@ function resetGame() {
   roundsPlayed = 0;
 }
 
-function playRound() {
-  let roundResult;
+function init() {
+  let winningScore;
+  let playerScore = scores[0];
+  let computerScore = scores[1];
+  let resultStr;
 
-  const playerInput = prompt('Pick between rock, paper, or scissors', '');
-  const playerSelection = playerInput.trim().toLowerCase();
+  // Initializing the game
+  // if (!winningScore) {
+  //   winningScore = +prompt('How many rounds do you want to play?');
+  // }
+
+  // if (roundsPlayed === 0) {
+  //   alert("Let's play rock, paper scissors!");
+  // }
+
+  rpsContainer.classList.remove('hidden');
+  rpsHeader.classList.remove('hidden');
+  btnStart.classList.add('hidden');
+}
+
+function matchSelection(e) {
+  // Guard clause
+  if (!e.target.classList.contains('rps-icon')) return;
+
+  const playerSelection = e.target.dataset.selection;
   const computerSelection = computerPlay();
+  let roundResult;
 
   if (playerSelection === computerSelection) {
     roundResult = 'tie';
@@ -42,23 +64,16 @@ function playRound() {
     roundResult = computerSelection === 'paper' ? 'playerWin' : 'computerWin';
   } else if (playerSelection === 'paper') {
     roundResult = computerSelection === 'rock' ? 'playerWin' : 'computerWin';
-  } else alert('Wrong input! Try again.');
-
-  return [roundResult, playerSelection, computerSelection];
+  }
+  return roundResult;
 }
 
-function playGame() {
-  const winningScore = 5;
-  let playerScore = scores[0];
-  let computerScore = scores[1];
-  let resultStr;
+// Event Listeners
+btnStart.addEventListener('click', init);
+rpsContainer.addEventListener('click', matchSelection);
 
-  // Initializing the game
-  if (roundsPlayed === 0) {
-    alert("Let's play rock, paper scissors!");
-  }
-
-  // Continuing gameplay if no one has won
+/*
+ // Continuing gameplay if no one has won
   if (playerScore < winningScore && computerScore < winningScore) {
     const [roundResult, playerSelection, computerSelection] = playRound();
 
@@ -95,7 +110,27 @@ function playGame() {
     alert(`Damn, you lost even with ${roundsPlayed} tries. Tough luck!`);
     resetGame();
   }
-}
+  */
 
-// Event Listeners
-btnStart.addEventListener('click', playGame);
+/*
+  function playRound() {
+  let roundResult;
+
+  const playerInput = prompt('Pick between rock, paper, or scissors', '');
+  const playerSelection = playerInput.trim().toLowerCase();
+  const computerSelection = computerPlay();
+
+  if (playerSelection === computerSelection) {
+    roundResult = 'tie';
+  } else if (playerSelection === 'rock') {
+    roundResult =
+      computerSelection === 'scissors' ? 'playerWin' : 'computerWin';
+  } else if (playerSelection === 'scissors') {
+    roundResult = computerSelection === 'paper' ? 'playerWin' : 'computerWin';
+  } else if (playerSelection === 'paper') {
+    roundResult = computerSelection === 'rock' ? 'playerWin' : 'computerWin';
+  } else alert('Wrong input! Try again.');
+
+  return [roundResult, playerSelection, computerSelection];
+}
+*/
