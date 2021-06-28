@@ -48,7 +48,6 @@ function initializeGame() {
   );
 
   if (!winningScore) winningScore = 5;
-  console.log(winningScore);
 }
 
 function evaluateRPS(playerSel, computerSel) {
