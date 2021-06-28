@@ -2,10 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 :root {
-  --color-win: rgb(4, 255, 4);
+  --color-win: rgb(34, 221, 34);
   --color-lose: rgb(255, 70, 70);
   --color-tie: yellow;
 }
@@ -94,7 +95,8 @@ button,
 .rps-wrapper {
   display: flex;
   flex-direction: column;
-  width: 25%;
+  justify-content: center;
+  width: 30%;
   max-width: 160px;
   padding: 2rem 1rem;
 }
@@ -239,10 +241,36 @@ footer {
 
 @media (orientation: portrait) {
   h1 {
-    padding: 10rem 4rem 0;
+    padding: 8rem 4rem 0;
   }
 
   .footer-link {
     padding-bottom: 1.5rem;
+  }
+}
+
+@media (max-height: 760px) {
+  h1 {
+    padding: 4.8rem 2rem 0;
+  }
+
+  .rps-header {
+    display: none;
+  }
+
+  .rps-container {
+    margin-top: 2.4rem;
+  }
+
+  .rps-wrapper {
+    width: 30%;
+  }
+
+  .result-container {
+    width: 60%;
+  }
+
+  .round-result {
+    font-size: 1.2rem;
   }
 }

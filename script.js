@@ -24,7 +24,7 @@ const btnPlay = document.querySelector('.btn-play');
 
 // Gameplay
 const choices = ['rock', 'paper', 'scissors'];
-const winningScore = 10;
+let winningScore = 0;
 let scores = [0, 0];
 let playerScore = scores[0];
 let computerScore = scores[1];
@@ -42,6 +42,10 @@ function initializeGame() {
   rpsContainer.classList.remove('hidden');
   rpsHeader.classList.remove('hidden');
   btnStart.classList.add('hidden');
+
+  winningScore = +prompt(
+    'How many rounds do you want to play? \n Refresh the page to reset.'
+  );
 }
 
 function evaluateRPS(playerSel, computerSel) {
