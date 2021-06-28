@@ -8,7 +8,8 @@ This is the very first project that I have created completely from scratch, with
 
 ### HTML
 
-The HTML structure has multiple elements that have the _hidden_ class at first which will be removed once the game has been initialized. One example of this is the [modal window](/img/modal-window.jpg?raw=true)
+The HTML structure has multiple elements that have the _hidden_ class at first which will be removed once the game has been initialized. One example of this is the modal window.
+![modal window](/img/modal-window.jpg?raw=true)
 
 ### CSS
 
@@ -22,4 +23,4 @@ I solidified my foundation on Javascript with this project. Using multiple event
 
 I utilized a simple retro theme in the UI with the button design and Google fonts. The page is fully responsive and should work on multiple devices and on different viewport sizes.
 
-[View of the page](/img/simple-ui.jpg?raw=true)
+![View of the page](/img/simple-ui.jpg?raw=true)
