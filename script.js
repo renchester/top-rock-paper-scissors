@@ -24,7 +24,7 @@ const btnPlay = document.querySelector('.btn-play');
 
 // Gameplay
 const choices = ['rock', 'paper', 'scissors'];
-let winningScore = 0;
+let winningScore = 5;
 let scores = [0, 0];
 let playerScore = scores[0];
 let computerScore = scores[1];
