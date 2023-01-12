@@ -8,20 +8,21 @@ This is the very first project that I have created completely from scratch, with
 
 ### HTML
 
-The HTML structure has multiple elements that have the _hidden_ class at first which will be removed once the game has been initialized. One example of this is the modal window.
+The page structure has multiple elements including a title page, a modal window for user input, a view of the actual game, and another modal showing the game result. These elements have different classes that get manipulated through DOM and Javascript to display the game.
 
 ![modal window](/img/modal-window.jpg?raw=true)
 
 ### CSS
 
-For this project, I used multiple flexboxes as I find that to be easier than other layouts. I also studied some hover and focus effects that help add emphasis to different elements in the page.
+The game employs a simple retro design that fits multiple screen sizes. The rock, paper, and scissors icons all have animations when hovered over to highlight activity. The game is all set within one container and uses several flexboxes to fit the content nicely in different screens.
 
 ### Javascript
 
-I solidified my foundation on Javascript with this project. Using multiple event delegations, I was able to implement the different CSS effects that I planned to do. I was also able to research further on DOM manipulation and to identify the available properties and methods through prototypal inheritance using the console.
+The functions used in this game is divided into three main parts:
+(1) **Initializers** to load up the initial game state and generate the evaluation procedure;
+(2) **Display** functions to manipulate the DOM, show and hide elements, and show the game results; and
+(3) **Game state** functions to store and keep track of the rounds as well as execute the evaluations;
 
-### Design
-
-I utilized a simple retro theme in the UI with the button design and Google fonts. The page is fully responsive and should work on multiple devices and on different viewport sizes.
+Developed by Renchester Ramos
 
 ![view of the page](https://user-images.githubusercontent.com/61845973/123678008-5a719380-d878-11eb-9d7f-0e153b830da4.png)
