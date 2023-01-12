@@ -10,6 +10,67 @@
   --color-tie: yellow;
 }
 
+@keyframes scissorAnimation {
+  15% {
+    transform: rotate(-30deg);
+  }
+
+  30% {
+    transform: rotate(0deg);
+  }
+
+  45% {
+    transform: rotate(-30deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  70% {
+    transform: rotate(-40deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes paperRockAnimation {
+  15% {
+    transform: rotate(60deg);
+  }
+
+  30% {
+    transform: rotate(90deg);
+  }
+
+  45% {
+    transform: rotate(60deg);
+  }
+
+  60% {
+    transform: rotate(90deg);
+  }
+
+  70% {
+    transform: rotate(60deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.rps-scissors:hover {
+  animation: 3s ease-in-out 0s 1 normal scissorAnimation;
+}
+
+.rps-rock:hover,
+.rps-paper:hover {
+  animation: 3s ease-in-out 0s 1 normal paperRockAnimation;
+}
+
 html {
   box-sizing: border-box;
   font-size: 62.5%;
