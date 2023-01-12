@@ -1,6 +1,11 @@
 'use strict';
 
-// DOM Selection
+/*
+
+DOM SELECTIONS
+
+*/
+
 const overlayDiv = document.querySelector('.overlay-div');
 
 const queryModal = document.querySelector('.query-modal');
@@ -26,7 +31,12 @@ const btnQuery = document.querySelector('.btn-query');
 const btnStart = document.querySelector('.btn-start');
 const btnPlay = document.querySelector('.btn-play');
 
-// Gameplay
+/*
+
+GAME STATE DECLARATIONS
+
+*/
+
 const choices = ['rock', 'paper', 'scissors'];
 let winningScore = 0;
 let scores = [0, 0];
@@ -35,7 +45,12 @@ let computerScore = scores[1];
 let roundsPlayed = 0;
 let gameState = true;
 
-// Functions
+/*
+
+GAME INITIALIZING FUNCTIONS
+
+*/
+
 function generateComputerPlay() {
   const choiceIndex = Math.ceil(Math.random() * choices.length) - 1;
   const computerSelection = choices[choiceIndex];
@@ -74,9 +89,28 @@ function evaluateRPS(playerSel, computerSel) {
   return roundResult;
 }
 
+/*
+
+GAME DISPLAY FUNCTIONS
+
+*/
+
 function displayInterface(playerSelection) {
   let label;
 
+  // Toggles label visibility for when element is hovered
+  rpsWrappers.forEach((el) =>
+    el.addEventListener('mouseenter', () => {
+      showLabel(el);
+    })
+  );
+  rpsWrappers.forEach((el) =>
+    el.addEventListener('mouseleave', () => {
+      hideLabel(el);
+    })
+  );
+
+  // Removes labels for each inactive wrapper
   rpsLabels.forEach((el) => el.classList.add('hidden'));
 
   // Match strat to determine which label to display
@@ -132,6 +166,26 @@ function displayWin(player, computer) {
   }
 }
 
+function showLabel(el) {
+  const labelToShow = el.querySelector('.rps-label');
+
+  labelToShow.classList.remove('hidden');
+}
+
+function hideLabel(el) {
+  const labelToHide = el.querySelector('.rps-label');
+
+  labelToHide.parentElement.classList.contains('play-active')
+    ? ''
+    : labelToHide.classList.add('hidden');
+}
+
+/*
+
+GAME STATE FUNCTIONS
+
+*/
+
 function makeActive(targetEl) {
   rpsWrappers.forEach((wrapper) => wrapper.classList.remove('play-active'));
   const parentEl = targetEl.parentNode;
@@ -170,9 +224,10 @@ function gamePlay(e) {
   const roundResult = evaluateRPS(playerSelection, computerSelection);
   if (!roundResult) return;
 
-  // Display the game interface
+  // Load up and display the game interface
   displayInterface(playerSelection);
 
+  // Display round result
   displayResult(roundResult);
 
   if (playerScore >= winningScore || computerScore >= winningScore) {
@@ -181,7 +236,12 @@ function gamePlay(e) {
   }
 }
 
-// Event Listeners
+/*
+
+EVENT LISTENERS
+
+*/
+
 btnStart.addEventListener('click', initializeGame);
 btnQuery.addEventListener('click', submitInput);
 rpsContainer.addEventListener('click', gamePlay);
