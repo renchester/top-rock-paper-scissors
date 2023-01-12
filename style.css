@@ -62,15 +62,6 @@
   }
 }
 
-.rps-scissors:hover {
-  animation: 3s ease-in-out 0s 1 normal scissorAnimation;
-}
-
-.rps-rock:hover,
-.rps-paper:hover {
-  animation: 3s ease-in-out 0s 1 normal paperRockAnimation;
-}
-
 html {
   box-sizing: border-box;
   font-size: 62.5%;
@@ -182,6 +173,15 @@ a:hover {
 .rps-wrapper:focus,
 .play-active {
   transform: scale(1.3);
+}
+
+.rps-scissors:hover {
+  animation: 3s ease-in-out 0s 1 normal scissorAnimation;
+}
+
+.rps-rock:hover,
+.rps-paper:hover {
+  animation: 3s ease-in-out 0s 1 normal paperRockAnimation;
 }
 
 .rps-paper,
