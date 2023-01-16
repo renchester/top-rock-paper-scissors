@@ -52,7 +52,7 @@ GAME INITIALIZING FUNCTIONS
 */
 
 function generateComputerPlay() {
-  const choiceIndex = Math.ceil(Math.random() * choices.length) - 1;
+  const choiceIndex = Math.floor(Math.random() * choices.length);
   const computerSelection = choices[choiceIndex];
   return computerSelection;
 }
